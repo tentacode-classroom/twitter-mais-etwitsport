@@ -9,7 +9,14 @@ La fonctionnalité principale en tant qu'utilisateur (structure/équipe eSportiv
 Les résultats des tournois pourront ensuite être partagés sur **eTwitSport**.
 
 ##Installation
-Faire `composer install` après avoir cloner le projet.
+Faire `composer install` après avoir cloner le projet. <br>
+Puis faire :
+```
+    composer require symfony/webpack-encore-pack
+    yarn install
+    yarn encore dev    
+```
+pour installer le webpack encore
 
 ##Spécificitées
 * Le code est écrit en **anglais**
