@@ -1,14 +1,14 @@
 # Twitte-mais-eTwitSport
 
-##Groupe
+## Groupe
 Le groupe est composé de Hugo Lantillon, Romain Loire et Cédric Lesueur.
 
-##Objectifs
+## Objectifs
 Le but du projet est de créé un site ressemblant à twitter mais pour les structures eSportives. <br><br>
 La fonctionnalité principale en tant qu'utilisateur (structure/équipe eSportive) sera celle de pouvoir contacter différentes structure dans l'optique de programmer des entrainements (scrims) ou des tournois. <br><br>
 Les résultats des tournois pourront ensuite être partagés sur **eTwitSport**.
 
-##Installation
+## Installation
 Faire `composer install` après avoir cloner le projet. <br>
 Puis installer nodejs :
 ```
@@ -18,7 +18,7 @@ Puis installer nodejs :
 ```
 Enfin, faire `npm i` pour installer les packages.
 
-##Spécificitées
+## Spécificitées
 * Le code est écrit en **anglais**
 * Nomeclature
     * branche : **br**
