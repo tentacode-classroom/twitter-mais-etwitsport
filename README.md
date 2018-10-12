@@ -10,13 +10,13 @@ Les résultats des tournois pourront ensuite être partagés sur **eTwitSport**.
 
 ##Installation
 Faire `composer install` après avoir cloner le projet. <br>
-Puis faire :
+Puis installer nodejs :
 ```
-    composer require symfony/webpack-encore-pack
-    yarn install
-    yarn encore dev    
+      sudo apt-get install curl
+      curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+      sudo apt-get install nodejs
 ```
-pour installer le webpack encore
+Enfin, faire `npm i` pour installer les packages.
 
 ##Spécificitées
 * Le code est écrit en **anglais**
