@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -37,6 +39,16 @@ class Team
      * @ORM\Column(type="simple_array")
      */
     private $roles = ['ROLE_USER'];
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ETweet", mappedBy="team")
+     */
+    private $eTweets;
+
+    public function __construct()
+    {
+        $this->eTweets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,6 +99,37 @@ class Team
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ETweet[]
+     */
+    public function getETweets(): Collection
+    {
+        return $this->eTweets;
+    }
+
+    public function addETweet(ETweet $eTweet): self
+    {
+        if (!$this->eTweets->contains($eTweet)) {
+            $this->eTweets[] = $eTweet;
+            $eTweet->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeETweet(ETweet $eTweet): self
+    {
+        if ($this->eTweets->contains($eTweet)) {
+            $this->eTweets->removeElement($eTweet);
+            // set the owning side to null (unless already changed)
+            if ($eTweet->getTeam() === $this) {
+                $eTweet->setTeam(null);
+            }
+        }
 
         return $this;
     }
