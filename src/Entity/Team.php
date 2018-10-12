@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
+ * @UniqueEntity("email", message = "Cette addresse mail est déjà utilisée")
  */
 class Team
 {
@@ -34,7 +36,7 @@ class Team
     /**
      * @ORM\Column(type="simple_array")
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     public function getId(): ?int
     {

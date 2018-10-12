@@ -13,10 +13,10 @@ class ProfileTeamController extends AbstractController
     public function index($teamId)
     {
         $team = null; //à modifier pour que team soit égal à findById($teamId);
-        //
-        return $this->render('profile_team/index.html.twig', [
+
+        return $this->render('profile_team/profile.html.twig', [
             'controller_name' => 'ProfileTeamController',
-            'team' => $team
+//            'team' => $team //
         ]);
     }
 }
