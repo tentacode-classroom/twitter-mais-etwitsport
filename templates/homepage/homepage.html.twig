@@ -19,7 +19,10 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-
+                {{ form_start(formETweet) }}
+                {{ form_row(formETweet.content,{'attr' : {'placeholder' :"Your Content"}}) }}
+                {{ form_row(formETweet.submit,{'attr' : {'placeholder' :"Envoyez", 'style':"width: 100%", 'class':"btn-primary"}}) }}
+                {{ form_end(formETweet) }}
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Ecrivez votre annonce...">
