@@ -19,6 +19,21 @@ class ETweetRepository extends ServiceEntityRepository
         parent::__construct($registry, ETweet::class);
     }
 
+    /**
+    //     * @return ETweet[] Returns an array of ETweet objects
+    //     */
+
+    public function findByTeamId($value)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.team = :val')
+            ->setParameter('val', $value)
+            ->orderBy('e.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return ETweet[] Returns an array of ETweet objects
 //     */

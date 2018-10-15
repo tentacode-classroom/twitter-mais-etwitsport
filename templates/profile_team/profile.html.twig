@@ -4,7 +4,89 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Bienvenue sur la page de {{ team.name }}</h1>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+            <h1>{{ team.name }}</h1>
+
+            {% for eTweet in eTweets %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="eTweetDisplay">
+                            <img src="/uploads{{ asset(eTweet.team.avatarFileName)}}" alt="" class="profPicHomepage">
+                            <h2 class="card-title ml-20px"><a href="{{ path('profile_team', {'teamId': eTweet.team.id}) }}">{{ eTweet.team.name }}</a></h2>
+                        </div>
+                        <hr>
+                        <p class="card-text">{{ eTweet.content }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on {{ eTweet.dating|date('d/m/Y-H:i') }}
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+
+        <!-- Search Widget -->
+        <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+                </div>
+            </div>
+        </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Categories</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">Web Design</a>
+                                </li>
+                                <li>
+                                    <a href="#">HTML</a>
+                                </li>
+                                <li>
+                                    <a href="#">Freebies</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">JavaScript</a>
+                                </li>
+                                <li>
+                                    <a href="#">CSS</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tutorials</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

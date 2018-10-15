@@ -19,24 +19,21 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-                {{ form_start(formETweet) }}
-                {{ form_row(formETweet.content,{'attr' : {'placeholder' :"Your Content"}}) }}
-                {{ form_row(formETweet.submit,{'attr' : {'placeholder' :"Envoyez", 'style':"width: 100%", 'class':"btn-primary"}}) }}
-                {{ form_end(formETweet) }}
                 <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Ecrivez votre annonce...">
-                    </div>
-                        <button  class="pull-right btn btn-primary" type="button"> Envoyer </button>
+                {{ form_start(formETweet) }}
+                {{ form_row(formETweet.content,{'attr' : {'placeholder' :"Write your eTweet...", 'class':"width100 form-control"}}) }}
+                {{ form_row(formETweet.submit,{'attr' : {'placeholder' :"Envoyez",'class':"btn-placement btn btn-primary"}}) }}
+                {{ form_end(formETweet) }}
                 </div>
+
 
                 <!-- Blog Post -->
                 {% for eTweet in eTweets %}
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="" style="display: flex; align-items: center;">
-                                <img src="/uploads{{ asset(eTweet.team.avatarFileName)}}" alt="" style="width: 100px; height: 100px; -webkit-clip-path: circle(50% at 50% 50%); clip-path: circle(50% at 50% 50%);">
-                                <h2 class="card-title" style="margin-left : 20px"><a href="{{ path('profile_team', {'teamId': eTweet.team.id}) }}">{{ eTweet.team.name }}</a></h2>
+                            <div class="eTweetDisplay">
+                                <img src="/uploads{{ asset(eTweet.team.avatarFileName)}}" alt="" class="profPicHomepage">
+                                <h2 class="card-title ml-20px"><a href="{{ path('profile_team', {'teamId': eTweet.team.id}) }}">{{ eTweet.team.name }}</a></h2>
                             </div>
                             <hr>
                             <p class="card-text">{{ eTweet.content }}</p>
@@ -117,7 +114,6 @@
                         You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
                     </div>
                 </div>
-
             </div>
 
         </div>

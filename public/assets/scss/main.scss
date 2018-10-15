@@ -1,1 +1,26 @@
 @import "~bootstrap/scss/bootstrap";
+
+.profPicHomepage{
+  width: 50px;
+  height: 50px;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+}
+
+.ml-20px{
+  margin-left : 20px;
+}
+
+.width100{
+  width: 100%;
+}
+
+.btn-placement{
+  margin-top: 10px;
+  margin-left: 615px;
+}
+
+.eTweetDisplay{
+  display: flex;
+  align-items: center;
+}

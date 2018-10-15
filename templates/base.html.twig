@@ -33,10 +33,10 @@
                     {# {% if is_granted('ROLE_USER') %} #}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('logout') }}">Lougout</a>
+                        <a class="nav-link" href="{{ path('logout') }}">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('profile_team') }}">Profile Team</a>
+                        <a class="nav-link" href="{{ path('profile_team') }}">Profile</a>
                     </li>
                     {% endif %}
                 </ul>
