@@ -24,15 +24,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('homepage') }}">Home</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+                    </li>
+                    {% endif %}
+
+                    {# {% if is_granted('ROLE_USER') %} #}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('logout') }}">Lougout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="{{ path('profile_team') }}">Profile Team</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
