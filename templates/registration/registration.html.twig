@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}inscription {% endblock%}
+{% form_theme formTeam 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+    <div class="container">
+        {{ form_start(formTeam) }}
+        {{ form_row(formTeam.name,{'attr' : {'placeholder' :"Your Name"}}) }}
+        {{ form_row(formTeam.email,{'attr' : {'placeholder' :"Your Email Adress"}}) }}
+        {{ form_row(formTeam.password,{'attr' : {'placeholder' :"Your password"}}) }}
+        {{ form_row(formTeam.avatar,{'attr' : {'placeholder' :"Upload file"}}) }}
+        {{ form_row(formTeam.inscription,{'attr' : {'placeholder' :"Envoyez"}}) }}
+        {{ form_end(formTeam) }}
+
+    </div>
+{% endblock %}

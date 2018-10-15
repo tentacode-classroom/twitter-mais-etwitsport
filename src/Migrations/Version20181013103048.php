@@ -8,7 +8,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20181012163842 extends AbstractMigration
+final class Version20181013103048 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
@@ -16,6 +16,7 @@ final class Version20181012163842 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE etweet (id INT AUTO_INCREMENT NOT NULL, team_id INT NOT NULL, content VARCHAR(255) NOT NULL, dating DATETIME NOT NULL, INDEX IDX_12BFC26C296CD8AE (team_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE team (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:simple_array)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE etweet ADD CONSTRAINT FK_12BFC26C296CD8AE FOREIGN KEY (team_id) REFERENCES team (id)');
     }
 
@@ -24,6 +25,8 @@ final class Version20181012163842 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE etweet DROP FOREIGN KEY FK_12BFC26C296CD8AE');
         $this->addSql('DROP TABLE etweet');
+        $this->addSql('DROP TABLE team');
     }
 }
