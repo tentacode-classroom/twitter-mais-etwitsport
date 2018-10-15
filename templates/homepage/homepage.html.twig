@@ -31,12 +31,17 @@
                 {% for eTweet in eTweets %}
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title"><a href="{{ path('profile_team', {'teamId': eTweet.team.id}) }}">{{ eTweet.team.name }}</a></h2>
+                            <div class="" style="display: flex; align-items: center;">
+                                <img src="/uploads{{ asset(eTweet.team.avatarFileName)}}" alt="" style="width: 100px; height: 100px; -webkit-clip-path: circle(50% at 50% 50%); clip-path: circle(50% at 50% 50%);">
+                                <h2 class="card-title" style="margin-left : 20px"><a href="{{ path('profile_team', {'teamId': eTweet.team.id}) }}">{{ eTweet.team.name }}</a></h2>
+                            </div>
+                            <hr>
                             <p class="card-text">{{ eTweet.content }}</p>
                         </div>
                         <div class="card-footer text-muted">
                             Posted on {{ eTweet.dating|date('d/m/Y-H:i') }}
                         </div>
+
                     </div>
                 {% endfor %}
                 <!-- Pagination -->
