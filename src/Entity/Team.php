@@ -54,10 +54,9 @@ class Team implements UserInterface, \Serializable
     private $avatarFileName;
 
     /**
-     * @Assert\File(
+     * @Assert\Image(
      *     maxSize = "2048k",
-     *     mimeTypes = {"application/pdf", "application/x-pdf"},
-     *     mimeTypesMessage = "Please upload a valid PDF"
+     *     mimeTypesMessage = "Max size is 2Mb."
      * )
      */
     private $avatar;

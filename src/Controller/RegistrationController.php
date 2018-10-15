@@ -26,7 +26,7 @@ class RegistrationController extends AbstractController
         $team = new Team();
         $form = $this->createFormBuilder($team)
             ->add('name',TextType::class)
-            ->add('avatar', FileType::class, array('label' => 'file'))
+            ->add('avatar', FileType::class, array('label' => 'File'))
             ->add('email',EmailType::class)
             ->add('password',PasswordType::class)
             ->add('inscription',SubmitType::class)
