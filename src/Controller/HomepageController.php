@@ -34,6 +34,10 @@ class HomepageController extends AbstractController
             ->getForm();
         $form->handleRequest($request);
 
+        $voteCounts = $this->getDoctrine()
+            ->getRepository(Vote::class)
+            ->FindByVotes();
+
         if ($form->isSubmitted() && $form->isValid())
         {
             $etweet = $form->getData();
@@ -46,13 +50,12 @@ class HomepageController extends AbstractController
             return $this->redirectToRoute("homepage");
          }
 
-        $eTweets = $this->getDoctrine()
-            ->getRepository(ETweet::class)
-            ->findByDating();
+//        $eTweets =
 
          return $this->render('homepage/homepage.html.twig', array(
              'formETweet' => $form->createView(),
              'eTweets' => $eTweets
+//             'voteCounts' => $voteCounts
          ));
     }
 
