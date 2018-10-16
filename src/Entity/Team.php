@@ -61,9 +61,21 @@ class Team implements UserInterface, \Serializable
      */
     private $avatar;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RT", mappedBy="team")
+     */
+    private $rTs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="team")
+     */
+    private $votes;
+
     public function __construct()
     {
         $this->eTweets = new ArrayCollection();
+        $this->rTs = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -220,5 +232,67 @@ class Team implements UserInterface, \Serializable
     public function isPasswordSafe()
     {
         return $this->name !== $this->password;
+    }
+
+    /**
+     * @return Collection|RT[]
+     */
+    public function getRTs(): Collection
+    {
+        return $this->rTs;
+    }
+
+    public function addRT(RT $rT): self
+    {
+        if (!$this->rTs->contains($rT)) {
+            $this->rTs[] = $rT;
+            $rT->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRT(RT $rT): self
+    {
+        if ($this->rTs->contains($rT)) {
+            $this->rTs->removeElement($rT);
+            // set the owning side to null (unless already changed)
+            if ($rT->getTeam() === $this) {
+                $rT->setTeam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vote[]
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): self
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes[] = $vote;
+            $vote->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): self
+    {
+        if ($this->votes->contains($vote)) {
+            $this->votes->removeElement($vote);
+            // set the owning side to null (unless already changed)
+            if ($vote->getTeam() === $this) {
+                $vote->setTeam(null);
+            }
+        }
+
+        return $this;
     }
 }

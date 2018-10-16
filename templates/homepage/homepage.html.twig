@@ -52,7 +52,11 @@
                             <p class="card-text">{{ eTweet.content }}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            Posted on {{ eTweet.dating|date('d/m/Y-H:i') }}
+                            <span>Posted on {{ eTweet.dating|date('d/m/Y-H:i') }}</span>
+                            <span><button class="btn btn-danger downVote float-right "></span>
+                            <span><button class="btn btn-success upVote float-right mr-10px"></span>
+                            <span><button class="btn btn-outline-primary btn float-right mr-10px"> RT</span>
+
                         </div>
 
                     </div>
