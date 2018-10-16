@@ -53,9 +53,9 @@
                         </div>
                         <div class="card-footer text-muted">
                             <span>Posted on {{ eTweet.dating|date('d/m/Y-H:i') }}</span>
-                            <span><button class="btn btn-danger downVote float-right "></span>
-                            <span><button class="btn btn-success upVote float-right mr-10px"></span>
-                            <span><button class="btn btn-outline-primary btn float-right mr-10px"> RT</span>
+                            <span><a class="float-right" href="{{ path('vote', {'idMessage': eTweet.id, 'value': -1}) }}"><button class="btn btn-danger downVote float-right"></a></span>
+                            <span><a class="float-right" href="{{ path('vote', {'idMessage': eTweet.id, 'value': 1}) }}"><button class="btn btn-success upVote float-right mr-10px"></a></span>
+                            <span><button class="btn btn-outline-primary btn float-right mr-10px">RT</span>
 
                         </div>
 

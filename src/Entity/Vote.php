@@ -31,7 +31,7 @@ class Vote
     /**
      * @ORM\Column(type="integer")
      */
-    private $TotalVote;
+    private $voteValue = 0;
 
     public function getId(): ?int
     {
@@ -62,25 +62,15 @@ class Vote
         return $this;
     }
 
-    public function getTotalVote(): ?int
+    public function getVoteValue(): ?int
     {
-        return $this->TotalVote;
+        return $this->voteValue;
     }
 
-    public function setTotalVote(int $TotalVote): self
+    public function setVoteValue(int $voteValue): self
     {
-        $this->TotalVote = $TotalVote;
+        $this->voteValue = $voteValue;
 
         return $this;
-    }
-
-    public function upVote()
-    {
-        $this->TotalVote+=1;
-    }
-
-    public function downVote()
-    {
-        $this->TotalVote-=1;
     }
 }

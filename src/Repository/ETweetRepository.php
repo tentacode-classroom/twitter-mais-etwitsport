@@ -34,6 +34,16 @@ class ETweetRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findOneById($value): ?ETweet
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
     public function findByDating()
     {
         return $this->createQueryBuilder('d')
