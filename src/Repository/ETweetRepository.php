@@ -20,8 +20,8 @@ class ETweetRepository extends ServiceEntityRepository
     }
 
     /**
-    //     * @return ETweet[] Returns an array of ETweet objects
-    //     */
+    * @return ETweet[] Returns an array of ETweet objects
+    */
 
     public function findByTeamId($value)
     {
@@ -29,6 +29,15 @@ class ETweetRepository extends ServiceEntityRepository
             ->andWhere('e.team = :val')
             ->setParameter('val', $value)
             ->orderBy('e.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByDating()
+    {
+        return $this->createQueryBuilder('d')
+            ->orderBy('d.dating', 'DESC')
             ->getQuery()
             ->getResult()
         ;
