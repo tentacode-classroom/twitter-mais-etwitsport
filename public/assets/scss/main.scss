@@ -11,16 +11,34 @@
   margin-left : 20px;
 }
 
+.mr-10px{
+  margin-right: 10px;
+}
+
 .width100{
   width: 100%;
 }
 
 .btn-placement{
   margin-top: 10px;
-  margin-left: 615px;
+  margin-left: 995px;
 }
 
 .eTweetDisplay{
   display: flex;
   align-items: center;
+}
+
+.upVote {
+    width: 30px;
+    height: 38px;
+    -webkit-clip-path: polygon(100% 75%, 50% 50%, 0% 75%, 0% 25%, 50% 0%, 100% 25%);
+    clip-path: polygon(100% 75%, 50% 50%, 0% 75%, 0% 25%, 50% 0%, 100% 25%);
+}
+
+.downVote {
+    width: 30px;
+    height: 38px;
+    -webkit-clip-path: polygon(0% 25%, 50% 50%, 100% 25%, 100% 75%, 50% 100%, 0% 75%);
+    clip-path: polygon(0% 25%, 50% 50%, 100% 25%, 100% 75%, 50% 100%, 0% 75%);
 }

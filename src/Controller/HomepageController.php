@@ -39,11 +39,13 @@ class HomepageController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($etweet);
             $entityManager->flush();
+
+            return $this->redirectToRoute("homepage");
          }
 
         $eTweets = $this->getDoctrine()
             ->getRepository(ETweet::class)
-            ->findAll();
+            ->findByDating();
 
          return $this->render('homepage/homepage.html.twig', array(
              'formETweet' => $form->createView(),
