@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ETweet index{% endblock %}
+
+{% block body %}
+    <h1>ETweet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Content</th>
+                <th>Dating</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for e_tweet in e_tweets %}
+            <tr>
+                <td>{{ e_tweet.id }}</td>
+                <td>{{ e_tweet.content }}</td>
+                <td>{{ e_tweet.dating ? e_tweet.dating|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('e_tweet_show', {'id': e_tweet.id}) }}">show</a>
+                    <a href="{{ path('e_tweet_edit', {'id': e_tweet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('e_tweet_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ETweet{% endblock %}
+
+{% block body %}
+    <h1>Create new ETweet</h1>
+
+    {{ include('e_tweet/_form.html.twig') }}
+
+    <a href="{{ path('e_tweet_index') }}">back to list</a>
+{% endblock %}

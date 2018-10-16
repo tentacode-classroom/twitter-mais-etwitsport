@@ -221,4 +221,9 @@ class Team implements UserInterface, \Serializable
     {
         return $this->name !== $this->password;
     }
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
+
