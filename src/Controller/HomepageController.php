@@ -72,9 +72,9 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/vote/{idMessage}/{value}", name="voteHome")
+     * @Route("/vote/{idMessage}/{value}/{route}", name="vote")
      */
-    public function updateVoteHome($idMessage, $value, UserInterface $userInterface, ObjectManager $manager)
+    public function updateVoteHome($idMessage, $value, $route, UserInterface $userInterface, ObjectManager $manager)
     {
         $vote = new Vote();
         $vote->setETweet($this->getDoctrine()
@@ -89,7 +89,20 @@ class HomepageController extends AbstractController
         $manager->persist($vote);
         $manager->flush();
 
-        return $this->redirectToRoute("homepage");
+        if ($route == 0)
+        {
+            return $this->redirectToRoute('homepage');
+        }
+        elseif ($route == 1)
+        {
+            $currentMessage = $this->getDoctrine()
+                ->getRepository(ETweet::class)
+                ->findOneById($idMessage);
+
+            $teamId = $currentMessage->getTeam()->getId();
+
+            return $this->redirectToRoute('profile_team', array('teamId' => $teamId));
+        }
     }
 
 
