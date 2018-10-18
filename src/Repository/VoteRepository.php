@@ -19,6 +19,17 @@ class VoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Vote::class);
     }
 
+    public function findByVote($value)
+    {
+        return $this->createQueryBuilder('v')
+            ->where('v.eTweet = :val')
+            ->setParameter('val', $value)
+            ->select('SUM(v.voteValue) as totalVote')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Vote[] Returns an array of Vote objects
 //     */

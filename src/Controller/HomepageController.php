@@ -27,15 +27,13 @@ class HomepageController extends AbstractController
             ->findOneByTeamEmail($userInterface->getUsername());
 
         $etweet = new ETweet();
+
+
         $form = $this->createFormBuilder($etweet)
             ->add('content', TextareaType::class, array('label' => ' '))
             ->add('submit', SubmitType::class, array('label' => 'ETweet'))
             ->getForm();
         $form->handleRequest($request);
-
-//        $voteCounts = $this->getDoctrine()
-//            ->getRepository(Vote::class)
-//            ->FindByVotes();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $etweet = $form->getData();
@@ -52,17 +50,27 @@ class HomepageController extends AbstractController
             ->getRepository(ETweet::class)
             ->findByDating();
 
-         return $this->render('homepage/homepage.html.twig', array(
-             'formETweet' => $form->createView(),
-             'eTweets' => $eTweets
-//             'voteCounts' => $voteCounts
-         ));
+
+
+        foreach ($eTweets as $msg)
+        {
+            $votes = $this->getDoctrine()
+                ->getRepository(Vote::class)
+                ->findByVote($msg->getId());
+
+            $msg->setTotalVote($votes[0]["totalVote"]);
+        }
+
+        return $this->render('homepage/homepage.html.twig', array(
+            'formETweet' => $form->createView(),
+            'eTweets' => $eTweets
+        ));
     }
 
     /**
-     * @Route("/vote/{idMessage}/{value}", name="vote")
+     * @Route("/vote/{idMessage}/{value}", name="voteHome")
      */
-    public function updateVote($idMessage, $value, UserInterface $userInterface, ObjectManager $manager)
+    public function updateVoteHome($idMessage, $value, UserInterface $userInterface, ObjectManager $manager)
     {
         $vote = new Vote();
         $vote->setETweet($this->getDoctrine()
@@ -79,4 +87,6 @@ class HomepageController extends AbstractController
 
         return $this->redirectToRoute("homepage");
     }
+
+
 }
