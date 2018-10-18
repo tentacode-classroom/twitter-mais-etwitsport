@@ -74,14 +74,7 @@ class HomepageController extends AbstractController
             ->getRepository(Team::class)
             ->findOneByTeamEmail($userInterface->getUsername()));
 
-        if ($value == 1)
-        {
-            $vote->setVoteValue(1);
-        }
-        else if ($value == -1)
-        {
-            $vote->setVoteValue(-1);
-        }
+        $vote->setVoteValue($value);
 
         $manager->persist($vote);
         $manager->flush();
