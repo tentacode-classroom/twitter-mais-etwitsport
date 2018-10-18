@@ -3,6 +3,7 @@
 {% block title %}Team{% endblock %}
 
 {% block body %}
+    <div class="container">
     <h1>Team</h1>
 
     <table class="table">
@@ -25,7 +26,7 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ team.roles }}</td>
+                <td>{{ team.roles|join(' ') }}</td>
             </tr>
             <tr>
                 <th>AvatarFileName</th>
@@ -37,6 +38,7 @@
     <a href="{{ path('team_index') }}">back to list</a>
 
     <a href="{{ path('team_edit', {'id': team.id}) }}">edit</a>
-
+<hr>
     {{ include('team/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

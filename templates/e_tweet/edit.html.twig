@@ -3,6 +3,7 @@
 {% block title %}Edit ETweet{% endblock %}
 
 {% block body %}
+    <div class="container">
     <h1>Edit ETweet</h1>
 
     {{ include('e_tweet/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +11,5 @@
     <a href="{{ path('e_tweet_index') }}">back to list</a>
 
     {{ include('e_tweet/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
