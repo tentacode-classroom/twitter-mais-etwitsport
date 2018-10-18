@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/dist{{ asset('main.css') }}">
         {#<script type="text/javascript" src="{{ asset('dist/main.js') }}"></script>#}
 
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
     <!-- Navigation -->
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="{{ path('logout') }}">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('profile_team') }}">Profile</a>
+                        <a class="nav-link" href="{{ path('profile_team', {'teamId': app.user.id}) }}">Profile</a>
                     </li>
                     {% endif %}
                 </ul>
