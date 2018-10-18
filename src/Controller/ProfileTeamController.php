@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Entity\ETweet;
+use App\Entity\Vote;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,12 +23,19 @@ class ProfileTeamController extends AbstractController
             ->getRepository(ETweet::class)
             ->findByTeamId($teamId);
 
+        foreach ($eTweets as $msg)
+        {
+            $votes = $this->getDoctrine()
+                ->getRepository(Vote::class)
+                ->findByVote($msg->getId());
+
+            $msg->setTotalVote($votes[0]["totalVote"]);
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($team);
         $entityManager->flush();
 
-//        dump($eTweets);
 
         return $this->render('profile_team/profile.html.twig', [
             'controller_name' => 'ProfileTeamController',
