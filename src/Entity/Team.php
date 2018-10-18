@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
+ * @UniqueEntity("email", message = "Cette addresse mail est déjà utilisée")
+ * @UniqueEntity("name", message = "Ce nom d'équipe est déjà utilisé")
  */
 class Team implements UserInterface, \Serializable
 {

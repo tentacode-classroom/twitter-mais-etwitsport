@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+
 class RegistrationController extends AbstractController
 {
     /**
