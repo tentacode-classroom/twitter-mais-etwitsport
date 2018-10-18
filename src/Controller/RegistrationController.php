@@ -21,16 +21,16 @@ class RegistrationController extends AbstractController
      * @param UserPasswordEncoderInterface $encoder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-     public function index(Request $request, UserPasswordEncoderInterface $encoder)
+    public function index(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $team = new Team();
         $form = $this->createFormBuilder($team)
-            ->add('name',TextType::class)
-            ->add('avatar', FileType::class, array('label' => 'File'))
-            ->add('email',EmailType::class)
-            ->add('password',PasswordType::class)
-            ->add('inscription',SubmitType::class)
-            ->getForm();
+           ->add('name', TextType::class)
+           ->add('avatar', FileType::class, array('label' => 'File'))
+           ->add('email', EmailType::class)
+           ->add('password', PasswordType::class)
+           ->add('inscription', SubmitType::class)
+           ->getForm();
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -44,7 +44,7 @@ class RegistrationController extends AbstractController
             $avatarFile = $team->getAvatar();
             $entityManager = $this->getDoctrine()->getManager();
             //nom du fichier qui sera mis dans la bdd
-            $team->setAvatarFileName( md5(uniqid()).'.'.$avatarFile->guessExtension());
+            $team->setAvatarFileName(md5(uniqid()).'.'.$avatarFile->guessExtension());
             $entityManager->persist($team);
 
             $avatarFile->move(
@@ -57,7 +57,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
         return $this->render('registration/registration.html.twig', [
-            'formTeam' => $form->createView()
+           'formTeam' => $form->createView()
         ]);
     }
 }

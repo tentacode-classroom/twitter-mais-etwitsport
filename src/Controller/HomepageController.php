@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 class HomepageController extends AbstractController
 {
     /**
@@ -38,8 +37,7 @@ class HomepageController extends AbstractController
 //            ->getRepository(Vote::class)
 //            ->FindByVotes();
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $etweet = $form->getData();
             $etweet->setDating(new DateTime());
             $etweet->setTeam($loggedTeam);
@@ -48,7 +46,7 @@ class HomepageController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute("homepage");
-         }
+        }
 
         $eTweets = $this->getDoctrine()
             ->getRepository(ETweet::class)
