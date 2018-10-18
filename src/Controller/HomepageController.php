@@ -58,7 +58,11 @@ class HomepageController extends AbstractController
                 ->getRepository(Vote::class)
                 ->findByVote($msg->getId());
 
-            $msg->setTotalVote($votes[0]["totalVote"]);
+            $msg->setTotalVote(0);    
+            if ($votes[0]["totalVote"] != null) {
+                $msg->setTotalVote($votes[0]["totalVote"]);
+            }
+
         }
 
         return $this->render('homepage/homepage.html.twig', array(
