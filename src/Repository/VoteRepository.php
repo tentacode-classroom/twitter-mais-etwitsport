@@ -30,6 +30,16 @@ class VoteRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findOneByTeamId($value): ?Vote
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.team = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
 //    /**
 //     * @return Vote[] Returns an array of Vote objects
 //     */

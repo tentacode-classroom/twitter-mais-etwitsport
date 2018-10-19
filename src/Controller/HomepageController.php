@@ -86,8 +86,34 @@ class HomepageController extends AbstractController
 
         $vote->setVoteValue($value);
 
-        $manager->persist($vote);
-        $manager->flush();
+        $currentTeam = $this->getDoctrine()
+            ->getRepository(Team::class)
+            ->findOneByTeamEmail($userInterface->getUsername());
+
+
+        $formerVote = new Vote();
+        $formerVote = $this->getDoctrine()
+            ->getRepository(Vote::class)
+            ->findOneByTeamId($currentTeam->getId());
+
+        if ($formerVote == null)
+        {
+            $manager->persist($vote);
+            $manager->flush();
+        }
+        else
+        {
+            if ($formerVote->getVoteValue() == $vote->getVoteValue())
+            {
+                $formerVote->setVoteValue(0);
+                $manager->flush();
+            }
+            else
+            {
+                $formerVote->setVoteValue($value);
+                $manager->flush();
+            }
+        }
 
         if ($route == 0)
         {
@@ -103,6 +129,7 @@ class HomepageController extends AbstractController
 
             return $this->redirectToRoute('profile_team', array('teamId' => $teamId));
         }
+
     }
 
 
