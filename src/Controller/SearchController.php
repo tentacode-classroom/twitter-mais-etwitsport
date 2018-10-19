@@ -23,6 +23,8 @@ class SearchController extends AbstractController
         $teamm = $this->getDoctrine()->getRepository(Team::class)
             ->findOneByName($search);
 
+        /*$posts = $this->getDoctrine()->getRepository( ETweet::class )
+            ->searchPosts( $search );*/
         if (!$teamm) {
            return $this->render('search/usernotfound.html.twig');
         }
@@ -31,7 +33,7 @@ class SearchController extends AbstractController
            'search_team'      =>  $teamm,
        ]);*/
         return $this->render('search/index.html.twig', [
-           // 'search_posts'   =>  $posts,
+            'search_posts'   =>  $posts,
             'search_team'      =>  $teamm,
             'current_search'            =>  $search
         ]);

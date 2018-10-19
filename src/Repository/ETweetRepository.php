@@ -52,6 +52,14 @@ class ETweetRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    /*public function searchPosts(string $message)
+    {
+        return $this->createQueryBuilder('m')
+            ->where( 'm.message LIKE :message' )
+            ->setParameter( 'message', '%'.$message.'%' )
+            ->getQuery()
+            ->getOneOrNullResult();
+    }*/
 
 //    /**
 //     * @return ETweet[] Returns an array of ETweet objects
