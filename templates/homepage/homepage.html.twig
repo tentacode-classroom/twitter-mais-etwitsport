@@ -17,9 +17,19 @@
 
         <div class="row">
 
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+                <div class="card my-4">
+                    <div class="eTweetDisplay">
+                        <img src="/uploads{{ asset(app.user.avatarFileName)}}" alt="" class="profPicHomepage">
+                        <h5 class="card-header">{{ app.user.name }}</h5>
+                    </div>
+
+                </div>
+            </div>
 
             <!-- Blog Entries Column -->
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <!-- Search Widget -->
                 <div class="card my-4">
                     <h5 class="card-header">Search</h5>
@@ -62,15 +72,7 @@
                 {% endfor %}
             </div>
 
-            <!-- Sidebar Widgets Column -->
-            <div class="col-md-2">
 
-                <div>
-
-                </div>
-
-
-            </div>
 
         </div>
         <!-- /.row -->
@@ -81,7 +83,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+            <p class="m-0 text-center text-white">ETwitSport &copy; 2018</p>
         </div>
         <!-- /.container -->
     </footer>
