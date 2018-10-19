@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche : “{{ current_search }}”{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Résultats de recherche : “{{ current_search }}”</h1>
+    </section>
+    <section>
+        <h2>Utilisateurs</h2>
+        {% if search_team|length > 0 %}
+            {% include 'profile_team/profile.html.twig' with { 'team': search_team } %}
+        {% else %}
+            <p>Aucun utilisateurs trouvé</p>
+        {% endif %}
+    </section>
+{% endblock %}
+
+

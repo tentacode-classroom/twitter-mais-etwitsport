@@ -33,8 +33,8 @@ class RegistrationController extends AbstractController
            ->getForm();
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $team = $form->getData();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $team = $form->getData();
 
             //permet d'encrypter les password pour la bdd
             $plainPassword = $team->getPassword();

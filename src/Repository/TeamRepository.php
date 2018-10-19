@@ -29,6 +29,17 @@ class TeamRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findOneByName(string $search)
+    {
+        return $this->createQueryBuilder('q')
+            ->where( 'q.name LIKE :searchLike' )
+            ->orWhere( 'q.email = :search' )
+            ->setParameter( 'searchLike', '%'.$search.'%' )
+            ->setParameter( 'search', $search )
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Team[] Returns an array of Team objects
 //     */

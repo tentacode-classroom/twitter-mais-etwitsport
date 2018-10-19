@@ -38,6 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('profile_team') }}">Profile</a>
                     </li>
+                        <form method="get" action="{{ path('search') }}">
+                            <input name="query">
+                        </form>
                     {% endif %}
                 </ul>
             </div>
