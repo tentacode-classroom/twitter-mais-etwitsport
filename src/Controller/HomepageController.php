@@ -36,6 +36,10 @@ class HomepageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash(
+                'notice',
+                'Tweet is Post'
+            );
             $etweet = $form->getData();
             $etweet->setDating(new DateTime());
             $etweet->setTeam($loggedTeam);
