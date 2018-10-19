@@ -9,7 +9,10 @@
     <section>
         <h2>Utilisateurs</h2>
         {% if search_team|length > 0 %}
-            {% include 'profile_team/profile.html.twig' with { 'team': search_team } %}
+            {% include 'profile_team/profile_content.html.twig' with {
+                'team': search_team,
+                'eTweets': search_team.eTweets
+            } %}
         {% else %}
             <p>Aucun utilisateurs trouvé</p>
         {% endif %}

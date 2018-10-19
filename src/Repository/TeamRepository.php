@@ -37,7 +37,7 @@ class TeamRepository extends ServiceEntityRepository
             ->setParameter( 'searchLike', '%'.$search.'%' )
             ->setParameter( 'search', $search )
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
 //    /**
