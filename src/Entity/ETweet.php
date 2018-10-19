@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Vote;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ETweetRepository")
@@ -43,6 +44,20 @@ class ETweet
      * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="eTweet")
      */
     private $votes;
+
+    private $totalVote;
+
+    public function getTotalVote(): ?int
+    {
+        return $this->totalVote;
+    }
+
+    public function setTotalVote(string $totalVote): self
+    {
+        $this->totalVote = $totalVote;
+
+        return $this;
+    }
 
     public function __construct()
     {

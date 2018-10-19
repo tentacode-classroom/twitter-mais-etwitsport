@@ -4,7 +4,8 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <div class="container" style="width: 40%; margin-left: 30%">
+
+    <div class="container " style="width: 40%; margin-left: 30%)">
         <h1 style="margin-left: 35%; font-size: 80px;">Login</h1>
         <form action="{{ path('login') }}" method="post">
             <div class="form-group">
@@ -20,4 +21,3 @@
         <div class="container"><a class="nav-link" href="{{ path('registration') }}">Créer un compte</a></div>
     </div>
 {% endblock %}
-

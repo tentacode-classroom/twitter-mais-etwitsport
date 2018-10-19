@@ -27,15 +27,13 @@ class HomepageController extends AbstractController
             ->findOneByTeamEmail($userInterface->getUsername());
 
         $etweet = new ETweet();
+
+
         $form = $this->createFormBuilder($etweet)
             ->add('content', TextareaType::class, array('label' => ' '))
             ->add('submit', SubmitType::class, array('label' => 'ETweet'))
             ->getForm();
         $form->handleRequest($request);
-
-//        $voteCounts = $this->getDoctrine()
-//            ->getRepository(Vote::class)
-//            ->FindByVotes();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $etweet = $form->getData();
@@ -52,17 +50,31 @@ class HomepageController extends AbstractController
             ->getRepository(ETweet::class)
             ->findByDating();
 
-         return $this->render('homepage/homepage.html.twig', array(
-             'formETweet' => $form->createView(),
-             'eTweets' => $eTweets
-//             'voteCounts' => $voteCounts
-         ));
+
+
+        foreach ($eTweets as $msg)
+        {
+            $votes = $this->getDoctrine()
+                ->getRepository(Vote::class)
+                ->findByVote($msg->getId());
+
+            $msg->setTotalVote(0);    
+            if ($votes[0]["totalVote"] != null) {
+                $msg->setTotalVote($votes[0]["totalVote"]);
+            }
+
+        }
+
+        return $this->render('homepage/homepage.html.twig', array(
+            'formETweet' => $form->createView(),
+            'eTweets' => $eTweets
+        ));
     }
 
     /**
-     * @Route("/vote/{idMessage}/{value}", name="vote")
+     * @Route("/vote/{idMessage}/{value}/{route}", name="vote")
      */
-    public function updateVote($idMessage, $value, UserInterface $userInterface, ObjectManager $manager)
+    public function updateVoteHome($idMessage, $value, $route, UserInterface $userInterface, ObjectManager $manager)
     {
         $vote = new Vote();
         $vote->setETweet($this->getDoctrine()
@@ -77,6 +89,21 @@ class HomepageController extends AbstractController
         $manager->persist($vote);
         $manager->flush();
 
-        return $this->redirectToRoute("homepage");
+        if ($route == 0)
+        {
+            return $this->redirectToRoute('homepage');
+        }
+        elseif ($route == 1)
+        {
+            $currentMessage = $this->getDoctrine()
+                ->getRepository(ETweet::class)
+                ->findOneById($idMessage);
+
+            $teamId = $currentMessage->getTeam()->getId();
+
+            return $this->redirectToRoute('profile_team', array('teamId' => $teamId));
+        }
     }
+
+
 }
