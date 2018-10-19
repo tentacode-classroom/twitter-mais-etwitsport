@@ -17,6 +17,13 @@
             <p>Aucun utilisateurs trouvé</p>
         {% endif %}
     </section>
+{#
+{% if search_posts|length > 0 %}
+        {% include 'profile_team/profile_content.html.twig' with { 'posts': search_posts } %}
+    {% else %}
+        <p>Aucun post trouvé</p>
+    {% endif %}
+#}
 {% endblock %}
 
 
