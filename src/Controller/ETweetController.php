@@ -37,6 +37,11 @@ class ETweetController extends AbstractController
             $em->persist($eTweet);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'New eTweet successfully created !'
+            );
+
             return $this->redirectToRoute('e_tweet_index');
         }
 
@@ -65,6 +70,11 @@ class ETweetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'notice',
+                'eTweet successfully updated !'
+            );
+
             return $this->redirectToRoute('e_tweet_edit', ['id' => $eTweet->getId()]);
         }
 
@@ -83,7 +93,14 @@ class ETweetController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($eTweet);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'eTweet successfully deleted !'
+            );
         }
+
+
 
         return $this->redirectToRoute('e_tweet_index');
     }

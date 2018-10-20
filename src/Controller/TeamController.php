@@ -37,6 +37,11 @@ class TeamController extends AbstractController
             $em->persist($team);
             $em->flush();
 
+            $this->addFlash(
+                'notice',
+                'New team successfully created !'
+            );
+
             return $this->redirectToRoute('team_index');
         }
 
@@ -65,6 +70,11 @@ class TeamController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'notice',
+                'Team successfully edited !'
+            );
+
             return $this->redirectToRoute('team_edit', ['id' => $team->getId()]);
         }
 
@@ -83,6 +93,11 @@ class TeamController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($team);
             $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Team successfully deleted !'
+            );
         }
 
         return $this->redirectToRoute('team_index');

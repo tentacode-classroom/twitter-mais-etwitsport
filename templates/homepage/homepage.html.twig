@@ -21,10 +21,14 @@
             <div class="col-md-4">
                 <div class="card my-4">
                     <div class="eTweetDisplay">
-                        <img src="/uploads{{ asset(app.user.avatarFileName)}}" alt="" class="profPicHomepage">
-                        <h5 class="card-header">{{ app.user.name }}</h5>
+                        <div class="profPicBackground">
+                            <img src="/uploads{{ asset(app.user.avatarFileName)}}" alt="" class="profPicHomepage">
+                        </div>
+                        <h5 class="card-header width100">{{ app.user.name }}</h5>
                     </div>
-
+                    <div class="card-body">
+                        <strong>Team e-mail :</strong> {{ app.user.email }}
+                    </div>
                 </div>
             </div>
 

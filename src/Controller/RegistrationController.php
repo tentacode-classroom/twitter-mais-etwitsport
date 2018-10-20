@@ -38,7 +38,7 @@ class RegistrationController extends AbstractController
                 $team = $form->getData();
                 $this->addFlash(
                     'notice',
-                    'Welcome'
+                    'Account created correctly'
                 );
             //permet d'encrypter les password pour la bdd
             $plainPassword = $team->getPassword();
