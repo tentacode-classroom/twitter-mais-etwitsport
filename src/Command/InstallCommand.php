@@ -111,7 +111,7 @@ class InstallCommand extends Command
 
         $io->section('Installation of NodeJS dependencies');
         $process = new Process('npm i');
-        $process->setTimeout(300);
+        $process->setTimeout(500);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
@@ -211,7 +211,7 @@ class InstallCommand extends Command
         $io->newLine(4);
 
         $io->section('Init DataBase');
-        $process = new Process('bin/console app:mig');
+        $process = new Process('bin/console doctrine:migration:migrate');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
@@ -220,7 +220,19 @@ class InstallCommand extends Command
 
         $io->newLine(20);
 
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
 
+        $io->section('Fixtures');
+        $process = new Process('php bin/console doctrine:fixtures:load');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+
+
+        $io->newLine(20);
 
         $io->title('Installation of the project');
         $io->progressAdvance();
