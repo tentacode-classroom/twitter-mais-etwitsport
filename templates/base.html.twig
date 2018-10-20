@@ -38,8 +38,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('profile_team', {'teamId': app.user.id}) }}">Profile</a>
                     </li>
-                        <form method="get" action="{{ path('search') }}">
-                            <input name="query">
+                        <form method="get" class="form-inline mt-2 mt-md-0" action="{{ path('search') }}">
+                            <input class="form-control mr-sm-2" name="query" placeholder="Search">
                         </form>
                     {% endif %}
                 </ul>

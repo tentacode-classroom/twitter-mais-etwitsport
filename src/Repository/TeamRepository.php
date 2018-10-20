@@ -29,15 +29,13 @@ class TeamRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findOneByName(string $search)
+    public function findAllByName(string $search)
     {
-        return $this->createQueryBuilder('q')
-            ->where( 'q.name LIKE :searchLike' )
-            ->orWhere( 'q.email = :search' )
+        return $this->createQueryBuilder('t')
+            ->where( 't.name LIKE :searchLike' )
             ->setParameter( 'searchLike', '%'.$search.'%' )
-            ->setParameter( 'search', $search )
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
 //    /**

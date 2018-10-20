@@ -3,20 +3,27 @@
 {% block title %}Recherche : “{{ current_search }}”{% endblock %}
 
 {% block body %}
-    <section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
         <h1>Résultats de recherche : “{{ current_search }}”</h1>
-    </section>
-    <section>
-        <h2>Utilisateurs</h2>
-        {% if search_team|length > 0 %}
-            {% include 'profile_team/profile_content.html.twig' with {
-                'team': search_team,
-                'eTweets': search_team.eTweets
-            } %}
-        {% else %}
-            <p>Aucun utilisateurs trouvé</p>
-        {% endif %}
-    </section>
+        <div class="row">
+            {% for team in teams%}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="/uploads{{ asset(team.avatarFileName) }}" alt="">
+                        <div class="card-body">
+                            <h4><a href="{{ path('profile_team', {'teamId': team.id}) }}">{{ team.name }}</a></h4>
+                            <div class="d-flex justify-content-between align-items-center">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 

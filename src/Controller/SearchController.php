@@ -20,9 +20,12 @@ class SearchController extends AbstractController
        $search = $request->get('query');
 
        // est-ce que l'utilisateur existe en base de données.
-        $teamm = $this->getDoctrine()->getRepository(Team::class)
-            ->findOneByName($search);
-        if (!$teamm) {
+        $teams = $this->getDoctrine()->getRepository(Team::class)
+            ->findAllByName($search);
+
+        dump($teams);
+
+        if ($teams == null) {
            return $this->render('search/usernotfound.html.twig');
         }
 
@@ -31,8 +34,8 @@ class SearchController extends AbstractController
        ]);*/
         return $this->render('search/index.html.twig', [
             //'search_posts'   =>  $posts,
-            'search_team'      =>  $teamm,
-            'current_search'            =>  $search
+            'teams'=>  $teams,
+            'current_search' =>  $search
         ]);
     }
 
