@@ -30,11 +30,13 @@ class VoteRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findOneByTeamId($value): ?Vote
+    public function findOneByTeamAndMsgId($value1, $value2): ?Vote
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.team = :val')
-            ->setParameter('val', $value)
+            ->andWhere('v.team = :val1')
+            ->andWhere('v.eTweet = :val2')
+            ->setParameter('val1', $value1)
+            ->setParameter('val2', $value2)
             ->getQuery()
             ->getOneOrNullResult()
             ;

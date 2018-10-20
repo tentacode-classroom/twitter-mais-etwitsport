@@ -95,10 +95,9 @@ class HomepageController extends AbstractController
             ->findOneByTeamEmail($userInterface->getUsername());
 
 
-        $formerVote = new Vote();
         $formerVote = $this->getDoctrine()
             ->getRepository(Vote::class)
-            ->findOneByTeamId($currentTeam->getId());
+            ->findOneByTeamAndMsgId($currentTeam->getId(), $idMessage);
 
         if ($formerVote == null)
         {
