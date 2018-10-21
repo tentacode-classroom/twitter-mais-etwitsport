@@ -11,6 +11,7 @@ Les résultats des tournois pourront ensuite être partagés sur **eTwitSport**.
 ## Installation rapide (recommandé)
 
 ```
+      git clone https://github.com/tentacode-classroom/twitter-mais-etwitsport.git
       composer install
       bin/console app:install
       bin/console app:install2
