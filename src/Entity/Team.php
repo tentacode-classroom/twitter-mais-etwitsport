@@ -72,7 +72,7 @@ class Team implements UserInterface, \Serializable
     private $votes;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="team")
+     * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="follower")
      */
     private $follows;
 
@@ -322,7 +322,7 @@ class Team implements UserInterface, \Serializable
     {
         if (!$this->follows->contains($follow)) {
             $this->follows[] = $follow;
-            $follow->setTeam($this);
+            $follow->setFollower($this);
         }
 
         return $this;
@@ -333,12 +333,11 @@ class Team implements UserInterface, \Serializable
         if ($this->follows->contains($follow)) {
             $this->follows->removeElement($follow);
             // set the owning side to null (unless already changed)
-            if ($follow->getTeam() === $this) {
-                $follow->setTeam(null);
+            if ($follow->getFollower() === $this) {
+                $follow->setFollower(null);
             }
         }
 
         return $this;
     }
-
 }

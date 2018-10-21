@@ -17,40 +17,44 @@ class Follow
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="follows")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $followCounter;
+    private $follower;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="follows")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $team;
+    private $followed;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFollowCounter(): ?int
+    public function getFollower(): ?Team
     {
-        return $this->followCounter;
+        return $this->follower;
     }
 
-    public function setFollowCounter(int $followCounter): self
+    public function setFollower(?Team $follower): self
     {
-        $this->followCounter = $followCounter;
+        $this->follower = $follower;
 
         return $this;
     }
 
-    public function getTeam(): ?Team
+    public function getFollowed(): ?Team
     {
-        return $this->team;
+        return $this->followed;
     }
 
-    public function setTeam(?Team $team): self
+    public function setFollowed(?Team $followed): self
     {
-        $this->team = $team;
+        $this->followed = $followed;
 
         return $this;
     }

@@ -20,11 +20,9 @@
                     <strong>Team e-mail:</strong> {{ team.email }}
                 </div>
                 <div class="card-body">
-                    <span><strong>Followers :</strong>
                         {% if app.user.id != team.id %}
-                            //ton code
+                            <span><a style="color: white" class="btn btn-primary float-right">Follow</a></span>
                         {% endif %}
-                        <button class="btn btn-outline-primary btn float-right mr-10px">RT</button></span>
                 </div>
 
             </div>
@@ -48,7 +46,6 @@
                         <span><a href="{{ path('vote', {'idMessage': eTweet.id, 'value': -1, 'route': 1}) }}" class="btn btn-danger downVote float-right" ></a></span>
                         <span class="float-right mr-10px">{{ eTweet.totalVote }}</span>
                         <span><a class="btn btn-success upVote float-right mr-10px" href="{{ path('vote', {'idMessage': eTweet.id, 'value': 1, 'route': 1}) }}"></a></span>
-                        <span><button class="btn btn-outline-primary btn float-right mr-10px">RT</button></span>
                     </div>
 
                 </div>
