@@ -21,7 +21,14 @@
                 </div>
                 <div class="card-body">
                         {% if app.user.id != team.id %}
-                            <span><a style="color: white" class="btn btn-primary float-right">Follow</a></span>
+                            <span>
+                                    {% if is_following %}
+                                        <a href="{{ path('follow', {'followerId': app.user.id, 'followedId': team.id}) }}" style="color: white" class="btn btn-secondary float-right">Unfollow</a>
+                                    {% else %}
+                                        <a href="{{ path('follow', {'followerId': app.user.id, 'followedId': team.id}) }}" style="color: white" class="btn btn-primary float-right">Follow</a>
+                                    {% endif %}
+
+                            </span>
                         {% endif %}
                 </div>
 

@@ -4,20 +4,37 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Entity\ETweet;
+use App\Entity\Follow;
 use App\Entity\Vote;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ProfileTeamController extends AbstractController
 {
     /**
      * @Route("/profile/{teamId}", name="profile_team")
      */
-    public function index($teamId = 1)
+    public function index($teamId = 1, UserInterface $userInterface)
     {
+        $loggedTeam = $this->getDoctrine()
+            ->getRepository(Team::class)
+            ->findOneByTeamEmail($userInterface->getUsername());
+
         $team = $this->getDoctrine()
             ->getRepository(Team::class)
             ->find($teamId);
+
+        $follow = $formerFollow = $this->getDoctrine()
+            ->getRepository(Follow::class)
+            ->findOneByTwoTeams($loggedTeam, $team);
+
+        $isFollowing = false;
+
+        if ($follow)
+        {
+            $isFollowing = true;
+        }
 
         $eTweets = $this->getDoctrine()
             ->getRepository(ETweet::class)
@@ -46,7 +63,8 @@ class ProfileTeamController extends AbstractController
         return $this->render('profile_team/profile.html.twig', [
             'controller_name' => 'ProfileTeamController',
             'team' => $team,
-            'eTweets' => $eTweets
+            'eTweets' => $eTweets,
+            'is_following' => $isFollowing
         ]);
     }
 }

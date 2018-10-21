@@ -19,6 +19,18 @@ class FollowRepository extends ServiceEntityRepository
         parent::__construct($registry, Follow::class);
     }
 
+    public function findOneByTwoTeams($value1, $value2): ?Follow
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.follower = :val1')
+            ->andWhere('f.followed = :val2')
+            ->setParameter('val1', $value1)
+            ->setParameter('val2', $value2)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
 //    /**
 //     * @return Follow[] Returns an array of Follow objects
 //     */
