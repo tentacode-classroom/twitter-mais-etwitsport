@@ -18,6 +18,10 @@
                 </div>
                 <div class="card-body">
                     <strong>Team e-mail:</strong> {{ team.email }}
+                    <hr>
+                    <strong>Followers:</strong> {{ followed_by }}
+                    <hr>
+                    <strong>Following:</strong> {{ following }}
                 </div>
                 <div class="card-body">
                         {% if app.user.id != team.id %}

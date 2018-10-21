@@ -76,8 +76,6 @@ class Team implements UserInterface, \Serializable
      */
     private $follows;
 
-
-
     public function __construct()
     {
         $this->eTweets = new ArrayCollection();

@@ -29,6 +29,17 @@ class ProfileTeamController extends AbstractController
             ->getRepository(Follow::class)
             ->findOneByTwoTeams($loggedTeam, $team);
 
+        $totalFollowedBy = $this->getDoctrine()
+            ->getRepository(Follow::class)
+            ->findByFollowedBy($team)[0]['totalFollowedBy'];
+
+        $totalFollowing = $this->getDoctrine()
+            ->getRepository(Follow::class)
+            ->findByFollower($team)[0]['totalFollowing'];
+
+        dump($totalFollowedBy);
+        dump($totalFollowing);
+
         $isFollowing = false;
 
         if ($follow)
@@ -44,6 +55,8 @@ class ProfileTeamController extends AbstractController
             $votes = $this->getDoctrine()
                 ->getRepository(Vote::class)
                 ->findByVote($msg->getId());
+
+
 
             if ($votes[0]["totalVote"] == null)
             {
@@ -64,7 +77,9 @@ class ProfileTeamController extends AbstractController
             'controller_name' => 'ProfileTeamController',
             'team' => $team,
             'eTweets' => $eTweets,
-            'is_following' => $isFollowing
+            'is_following' => $isFollowing,
+            'followed_by' => $totalFollowedBy,
+            'following' => $totalFollowing
         ]);
     }
 }

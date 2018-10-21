@@ -31,6 +31,28 @@ class FollowRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByFollowedBy($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.followed = :val')
+            ->setParameter('val', $value)
+            ->select('count(f.followed) as totalFollowedBy')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByFollower($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.follower = :val')
+            ->setParameter('val', $value)
+            ->select('count(f.follower) as totalFollowing')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Follow[] Returns an array of Follow objects
 //     */
