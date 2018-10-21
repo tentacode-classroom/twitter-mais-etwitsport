@@ -7,18 +7,17 @@
 <div class="container">
 
     <div class="row">
+        <h1 class="col-md-10">{{ team.name }}</h1>
 
         <!-- Side Widget -->
         <div class="col-md-4">
             <div class="card my-4">
                 <div class="eTweetDisplay">
-                    <div class="profPicBackground">
-                        <img src="/uploads{{ asset(team.avatarFileName)}}" alt="" class="profPicHomepage">
-                    </div>
-                    <h5 class="card-header width100">{{ team.name }}</h5>
+                    <img src="/uploads{{ asset(team.avatarFileName)}}" alt="" class="profPicHomepage">
+                    <h5 class="card-header">{{ team.name }}</h5>
                 </div>
                 <div class="card-body">
-                    <strong>Team e-mail :</strong> {{ team.email }}
+                    <strong>Team e-mail:</strong> {{ team.email }}
                 </div>
                 <div class="card-body">
                     <span><strong>Followers :</strong>

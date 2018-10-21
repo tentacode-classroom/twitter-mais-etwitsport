@@ -73,7 +73,6 @@
                             <span><a href="{{ path('vote', {'idMessage': eTweet.id, 'value': -1, 'route': 0}) }}" class="btn btn-danger downVote float-right" ></a></span>
                             <span class="float-right mr-10px">{{ eTweet.totalVote }}</span>
                             <span><a class="btn btn-success upVote float-right mr-10px" href="{{ path('vote', {'idMessage': eTweet.id, 'value': 1, 'route': 0}) }}"></a></span>
-                            <span><button class="btn btn-outline-primary btn float-right mr-10px">RT</button></span>
                         </div>
                     </div>
                 {% endfor %}
