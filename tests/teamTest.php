@@ -16,8 +16,10 @@ class teamTest extends TestCase
     public function test()
     {
         $team = new Team();
-        
 
-        $this->assertEquals(null, $result);
+        $team->setName("champagne");
+        $result = $team->getName();
+
+        $this->assertEquals("champagne", $result);
     }
 }
