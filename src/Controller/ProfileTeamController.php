@@ -28,7 +28,14 @@ class ProfileTeamController extends AbstractController
                 ->getRepository(Vote::class)
                 ->findByVote($msg->getId());
 
-            $msg->setTotalVote($votes[0]["totalVote"]);
+            if ($votes[0]["totalVote"] == null)
+            {
+                $msg->setTotalVote(0);
+            }
+            else
+            {
+                $msg->setTotalVote($votes[0]["totalVote"]);
+            }
         }
 
         $entityManager = $this->getDoctrine()->getManager();

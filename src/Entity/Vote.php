@@ -67,7 +67,7 @@ class Vote
         return $this->voteValue;
     }
 
-    public function setVoteValue(int $voteValue): self
+    public function setVoteValue(int $voteValue = 0): self
     {
         $this->voteValue = $voteValue;
 
