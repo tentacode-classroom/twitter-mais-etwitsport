@@ -17,6 +17,9 @@ class FollowFeedController extends AbstractController
      */
     public function index(UserInterface $userInterface)
     {
+        $allETweets = null;
+        $eTweets = null;
+
         $loggedTeam = $this->getDoctrine()
             ->getRepository(Team::class)
             ->findOneByTeamEmail($userInterface->getUsername());
@@ -32,19 +35,22 @@ class FollowFeedController extends AbstractController
                     ->findByTeamId($teamIds[$i]['id']);
         }
 
-        foreach ($allETweets as $eTweet)
+        if ($allETweets != null)
         {
-            $eTweets[] = $eTweet[0];
-        }
+            foreach ($allETweets as $eTweet)
+            {
+                $eTweets[] = $eTweet[0];
+            }
 
-        foreach ($eTweets as $msg) {
-            $votes = $this->getDoctrine()
-                ->getRepository(Vote::class)
-                ->findByVote($msg->getId());
+            foreach ($eTweets as $msg) {
+                $votes = $this->getDoctrine()
+                    ->getRepository(Vote::class)
+                    ->findByVote($msg->getId());
 
-            $msg->setTotalVote(0);
-            if ($votes[0]["totalVote"] != null) {
-                $msg->setTotalVote($votes[0]["totalVote"]);
+                $msg->setTotalVote(0);
+                if ($votes[0]["totalVote"] != null) {
+                    $msg->setTotalVote($votes[0]["totalVote"]);
+                }
             }
         }
 
@@ -52,5 +58,7 @@ class FollowFeedController extends AbstractController
             'controller_name' => 'FollowFeedController',
             'eTweets' => $eTweets
         ]);
+
+
     }
 }
