@@ -19,7 +19,7 @@ class Follow
     /**
      * @ORM\Column(type="integer")
      */
-    private $followCounter;
+    private $followCounter = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="follows")

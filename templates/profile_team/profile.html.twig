@@ -20,11 +20,10 @@
                     <strong>Team e-mail:</strong> {{ team.email }}
                 </div>
                 <div class="card-body">
-                    <span><strong>Followers :</strong>
+                    <span><strong>Followers :</strong>{{ team.follows.followCounter }}
                         {% if app.user.id != team.id %}
-                        <button class="btn btn-outline-primary btn float-right mr-10px">RT</button></span>
+                        <button class="btn btn-outline-primary btn float-right mr-10px">Follow</button></span>
                         {% endif %}
-
                 </div>
 
             </div>
