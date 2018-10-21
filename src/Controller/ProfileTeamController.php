@@ -23,8 +23,7 @@ class ProfileTeamController extends AbstractController
             ->getRepository(ETweet::class)
             ->findByTeamId($teamId);
 
-        foreach ($eTweets as $msg)
-        {
+        foreach ($eTweets as $msg) {
             $votes = $this->getDoctrine()
                 ->getRepository(Vote::class)
                 ->findByVote($msg->getId());

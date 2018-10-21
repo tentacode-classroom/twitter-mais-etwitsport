@@ -8,16 +8,14 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Team;
 use App\Entity\ETweet;
 
-
-
 class SearchController extends AbstractController
 {
     /**
      * @Route("/redirect", name="search")
      */
-    public function search (Request $request)
+    public function search(Request $request)
     {
-       $search = $request->get('query');
+        $search = $request->get('query');
 
        // est-ce que l'utilisateur existe en base de données.
         $teams = $this->getDoctrine()->getRepository(Team::class)
@@ -26,7 +24,7 @@ class SearchController extends AbstractController
         dump($teams);
 
         if ($teams == null) {
-           return $this->render('search/usernotfound.html.twig');
+            return $this->render('search/usernotfound.html.twig');
         }
 
        /*return $this->redirectToRoute("search_", [
@@ -38,5 +36,4 @@ class SearchController extends AbstractController
             'current_search' =>  $search
         ]);
     }
-
 }

@@ -7,14 +7,13 @@
 <div class="container">
 
     <div class="row">
-        <h1 class="col-md-10">{{ team.name }}</h1>
 
         <!-- Side Widget -->
         <div class="col-md-4">
             <div class="card my-4">
                 <div class="eTweetDisplay">
                     <div class="profPicBackground">
-                        <img src="/uploads{{ asset(app.user.avatarFileName)}}" alt="" class="profPicHomepage">
+                        <img src="/uploads{{ asset(team.avatarFileName)}}" alt="" class="profPicHomepage">
                     </div>
                     <h5 class="card-header width100">{{ team.name }}</h5>
                 </div>

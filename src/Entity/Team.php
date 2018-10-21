@@ -71,6 +71,8 @@ class Team implements UserInterface, \Serializable
      */
     private $votes;
 
+
+
     public function __construct()
     {
         $this->eTweets = new ArrayCollection();
@@ -301,4 +303,5 @@ class Team implements UserInterface, \Serializable
 
         return $this;
     }
+
 }

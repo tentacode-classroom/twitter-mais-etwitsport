@@ -40,7 +40,6 @@ class HomepageController extends AbstractController
                 'notice',
                 'Your eTweet has been correctly posted !'
             );
-
             $etweet = $form->getData();
             $etweet->setDating(new DateTime());
             $etweet->setTeam($loggedTeam);
@@ -57,17 +56,15 @@ class HomepageController extends AbstractController
 
 
 
-        foreach ($eTweets as $msg)
-        {
+        foreach ($eTweets as $msg) {
             $votes = $this->getDoctrine()
                 ->getRepository(Vote::class)
                 ->findByVote($msg->getId());
 
-            $msg->setTotalVote(0);    
+            $msg->setTotalVote(0);
             if ($votes[0]["totalVote"] != null) {
                 $msg->setTotalVote($votes[0]["totalVote"]);
             }
-
         }
 
         return $this->render('homepage/homepage.html.twig', array(
@@ -100,31 +97,22 @@ class HomepageController extends AbstractController
             ->getRepository(Vote::class)
             ->findOneByTeamAndMsgId($currentTeam->getId(), $idMessage);
 
-        if ($formerVote == null)
-        {
+        if ($formerVote == null) {
             $manager->persist($vote);
             $manager->flush();
-        }
-        else
-        {
-            if ($formerVote->getVoteValue() == $vote->getVoteValue())
-            {
+        } else {
+            if ($formerVote->getVoteValue() == $vote->getVoteValue()) {
                 $formerVote->setVoteValue(0);
                 $manager->flush();
-            }
-            else
-            {
+            } else {
                 $formerVote->setVoteValue($value);
                 $manager->flush();
             }
         }
 
-        if ($route == 0)
-        {
+        if ($route == 0) {
             return $this->redirectToRoute('homepage');
-        }
-        elseif ($route == 1)
-        {
+        } elseif ($route == 1) {
             $currentMessage = $this->getDoctrine()
                 ->getRepository(ETweet::class)
                 ->findOneById($idMessage);
@@ -133,8 +121,5 @@ class HomepageController extends AbstractController
 
             return $this->redirectToRoute('profile_team', array('teamId' => $teamId));
         }
-
     }
-
-
 }

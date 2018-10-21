@@ -32,8 +32,8 @@ class TeamRepository extends ServiceEntityRepository
     public function findAllByName(string $search)
     {
         return $this->createQueryBuilder('t')
-            ->where( 't.name LIKE :searchLike' )
-            ->setParameter( 'searchLike', '%'.$search.'%' )
+            ->where('t.name LIKE :searchLike')
+            ->setParameter('searchLike', '%'.$search.'%')
             ->getQuery()
             ->getResult();
     }

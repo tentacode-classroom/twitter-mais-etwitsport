@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-
 class RegistrationController extends AbstractController
 {
     /**
@@ -34,20 +33,20 @@ class RegistrationController extends AbstractController
            ->getForm();
 
         $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $team = $form->getData();
-                $this->addFlash(
-                    'notice',
-                    'Account created correctly'
-                );
-            //permet d'encrypter les password pour la bdd
+        if ($form->isSubmitted() && $form->isValid()) {
+            $team = $form->getData();
+            $this->addFlash(
+                'notice',
+                'Account created correctly'
+            );
+        //permet d'encrypter les password pour la bdd
             $plainPassword = $team->getPassword();
             $encryptedPassword = $encoder->encodePassword($team, $plainPassword);
             $team->setPassword($encryptedPassword);
-            //fichier recuperer via form
+        //fichier recuperer via form
             $avatarFile = $team->getAvatar();
             $entityManager = $this->getDoctrine()->getManager();
-            //nom du fichier qui sera mis dans la bdd
+        //nom du fichier qui sera mis dans la bdd
             $team->setAvatarFileName(md5(uniqid()).'.'.$avatarFile->guessExtension());
             $entityManager->persist($team);
 
