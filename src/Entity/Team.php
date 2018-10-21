@@ -71,6 +71,11 @@ class Team implements UserInterface, \Serializable
      */
     private $votes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="team")
+     */
+    private $follows;
+
 
 
     public function __construct()
@@ -78,6 +83,7 @@ class Team implements UserInterface, \Serializable
         $this->eTweets = new ArrayCollection();
         $this->rTs = new ArrayCollection();
         $this->votes = new ArrayCollection();
+        $this->follows = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -298,6 +304,37 @@ class Team implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($vote->getTeam() === $this) {
                 $vote->setTeam(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollows(): Collection
+    {
+        return $this->follows;
+    }
+
+    public function addFollow(Follow $follow): self
+    {
+        if (!$this->follows->contains($follow)) {
+            $this->follows[] = $follow;
+            $follow->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollow(Follow $follow): self
+    {
+        if ($this->follows->contains($follow)) {
+            $this->follows->removeElement($follow);
+            // set the owning side to null (unless already changed)
+            if ($follow->getTeam() === $this) {
+                $follow->setTeam(null);
             }
         }
 
