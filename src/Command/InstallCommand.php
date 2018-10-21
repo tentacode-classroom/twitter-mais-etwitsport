@@ -26,7 +26,7 @@ class InstallCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Installation of the project');
-        $io->progressStart(11);
+        $io->progressStart(8);
         $io->newLine(4);
 
         $io->section('Installation of composer dependencies');
@@ -174,80 +174,6 @@ class InstallCommand extends Command
 
 
 
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-
-        $io->section('Launch MySQL server');
-        $process = new Process('sudo service mysql start');
-        $process->setTimeout(300);
-        $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-
-
-            $io->newLine(20);
-
-
-
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-
-        $io->section('Create DataBase');
-        $process = new Process('bin/console doctrine:database:create --if-not-exists');
-        $process->setTimeout(300);
-        $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-
-
-        $io->newLine(20);
-
-
-
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-
-        $io->section('Init DataBase');
-        $process = new Process('bin/console doctrine:migration:migrate');
-        $process->setTimeout(300);
-        $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-
-
-        $io->newLine(20);
-
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-
-        $io->section('Fixtures');
-        $process = new Process('php bin/console doctrine:fixtures:load');
-        $process->setTimeout(300);
-        $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-
-
-        $io->newLine(20);
-
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-
-        $io->section('Run the server');
-        $process = new Process('php bin/console server:start');
-        // $process->setTimeout(300);
-        $process->mustRun(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-
-
-        $io->newLine(20);
-
 
 
         $io->title('Installation of the project');
@@ -255,6 +181,6 @@ class InstallCommand extends Command
         $io->newLine(20);
 
         $io->newLine(2);
-        $io->success('Yeah ! The project is installed ! You can check it out in your favourite web browser :D');
+        $io->success('Premiere partie terminée');
     }
 }
