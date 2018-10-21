@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+                <div class="card my-4">
+                    <div class="eTweetDisplay">
+                        <div class="profPicBackground">
+                            <img src="/uploads{{ asset(app.user.avatarFileName)}}" alt="" class="profPicHomepage">
+                        </div>
+                        <h5 class="card-header width100">{{ app.user.name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <strong>Team e-mail :</strong> {{ app.user.email }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <form method="get" action="{{ path('search') }}">
+                        <h5 class="card-header">Search</h5>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input placeholder="Search for..." class="form-control" name="query">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="submit">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Blog Post -->
+                {% for eTweet in eTweets %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="eTweetDisplay">
+                                <img src="/uploads{{ asset(eTweet.team.avatarFileName)}}" alt="" class="profPicHomepage">
+                                <h2 class="card-title ml-20px"><a href="{{ path('profile_team', {'teamId': eTweet.team.id}) }}">{{ eTweet.team.name }}</a></h2>
+                            </div>
+                            <hr>
+                            <p class="card-text">{{ eTweet.content }}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <span>Posted on {{ eTweet.dating|date('d/m/Y-H:i') }}</span>
+                            <span><a href="{{ path('vote', {'idMessage': eTweet.id, 'value': -1, 'route': 0}) }}" class="btn btn-danger downVote float-right" ></a></span>
+                            <span class="float-right mr-10px">{{ eTweet.totalVote }}</span>
+                            <span><a class="btn btn-success upVote float-right mr-10px" href="{{ path('vote', {'idMessage': eTweet.id, 'value': 1, 'route': 0}) }}"></a></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">ETwitSport &copy; 2018</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+
+    </div>
+{% endblock %}

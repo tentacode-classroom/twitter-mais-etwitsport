@@ -37,9 +37,6 @@ class ProfileTeamController extends AbstractController
             ->getRepository(Follow::class)
             ->findByFollower($team)[0]['totalFollowing'];
 
-        dump($totalFollowedBy);
-        dump($totalFollowing);
-
         $isFollowing = false;
 
         if ($follow)

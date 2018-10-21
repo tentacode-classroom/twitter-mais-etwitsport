@@ -53,6 +53,17 @@ class FollowRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findByFollowerByUserId($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.follower = :val')
+            ->setParameter('val', $value)
+            ->select('(f.followed) as id')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Follow[] Returns an array of Follow objects
 //     */
