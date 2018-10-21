@@ -140,7 +140,7 @@ class InstallCommand extends Command
 
         $io->section('Setup file config (.env)');
 
-        $dbname = $io->ask('What is your databse username ?', 'db_user', function ($dbname) {
+        $dbname = $io->ask('What is your database username ?', 'db_user', function ($dbname) {
             if (empty($dbname)) {
                 throw new \RuntimeException('User cannot be empty.');
             }
@@ -155,7 +155,7 @@ class InstallCommand extends Command
         });
 
 
-        $dbpassword = $io->askhidden('What is your databse password ?', function ($dbpassword) {
+        $dbpassword = $io->askhidden('What is your database password ?', function ($dbpassword) {
             if (empty($dbpassword)) {
                 throw new \RuntimeException('Password cannot be empty.');
             }
