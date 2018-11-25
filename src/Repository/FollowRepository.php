@@ -21,6 +21,7 @@ class FollowRepository extends ServiceEntityRepository
 
     public function findOneByTwoTeams($value1, $value2): ?Follow
     {
+        //verifie avant les valeur des follower avant de regarder si il y sont dans la bdd
         return $this->createQueryBuilder('f')
             ->andWhere('f.follower = :val1')
             ->andWhere('f.followed = :val2')
@@ -33,6 +34,8 @@ class FollowRepository extends ServiceEntityRepository
 
     public function findByFollowedBy($value)
     {
+        //select signifie que l'on va compter combien d'id de team est représenter dans la bdd
+        //et alors il va envoyer ca a totalfollowby qui va etre afficher par la suite
         return $this->createQueryBuilder('f')
             ->andWhere('f.followed = :val')
             ->setParameter('val', $value)
@@ -44,6 +47,7 @@ class FollowRepository extends ServiceEntityRepository
 
     public function findByFollower($value)
     {
+        //inverse de la team qui suit
         return $this->createQueryBuilder('f')
             ->andWhere('f.follower = :val')
             ->setParameter('val', $value)
